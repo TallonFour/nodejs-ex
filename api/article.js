@@ -54,9 +54,9 @@ module.exports = function(server) {
 
         console.log("Successful article GET from  " + req.connection.remoteAddress + ". | Index: " + doc.index);
 
-        doc.htmlcontent = Converter.makeHtml(doc.mdcontent);
+        htmlcontent = Converter.makeHtml(doc.mdcontent);
 
-        res.send(200, doc);
+        res.send(200, htmlcontent);
         next();
 
       } else {
