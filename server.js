@@ -28,12 +28,6 @@ server.use(restifyPlugins.queryParser({ mapParams: true }));
 server.use(restifyPlugins.fullResponse());
 server.use(restifyPlugins.authorizationParser());
 
-secureserver.use(restifyPlugins.jsonBodyParser({ mapParams: true }));
-secureserver.use(restifyPlugins.acceptParser(server.acceptable));
-secureserver.use(restifyPlugins.queryParser({ mapParams: true }));
-secureserver.use(restifyPlugins.fullResponse());
-secureserver.use(restifyPlugins.authorizationParser());
-
 // Start Server, Connect to DB and Require Routes
 server.listen(port, () => {
   //connect to mongodb
