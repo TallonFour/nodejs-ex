@@ -11,7 +11,19 @@
     "mocha": "^2.4.5",
     "mongodb": "^2.1.16",
     "morgan": "^1.7.0",
-    "object-assign":"4.1.0"
+    "object-assign":"4.1.0",
+    "console-stamp": "^0.2.6",
+    "mongoose": "^5.0.13",
+    "mongoose-auto-increment": "^5.0.1",
+    "mongoose-string-query": "^0.2.5",
+    "mongoose-timestamp": "^0.6.0",
+    "node-mailer": "^0.1.1",
+    "randomstring": "^1.1.5",
+    "restify": "^7.1.0",
+    "restify-cookies": "^0.2.5",
+    "restify-errors": "^6.0.0",
+    "restify-oauth2": "^4.0.4",
+    "restify-plugins": "^1.6.0"
   },
   "engine": {
     "node": "*",
