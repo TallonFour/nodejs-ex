@@ -37,7 +37,7 @@ server.listen(port, () => {
       callback(err);
       return;
     }
-  }););
+  });
 
   autoIncrement.initialize(mongoose.connection);
 
