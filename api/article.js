@@ -9,6 +9,7 @@ const showdown = require('showdown');
 const Article = require('../models/article.js');
 
 const Converter = new showdown.Converter();
+Convert.setFlavor('github');
 
 module.exports = function(server) {
 
