@@ -31,7 +31,7 @@ const ArticleSchema = new mongoose.Schema(
 
 ArticleSchema.plugin(timestamps);
 ArticleSchema.plugin(mongooseStringQuery);
-UserSchema.plugin(autoIncrement.plugin, {
+ArticleSchema.plugin(autoIncrement.plugin, {
   model: 'Article',
   field: 'index',
   startAt: 1000,
