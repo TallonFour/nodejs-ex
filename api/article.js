@@ -8,8 +8,7 @@ const qs = require('qs');
 module.exports = function(server) {
 
   server.get('/articles/:index', (req, res, next) => {
-    data = '<p>HI</p>';
-    res.send(200, data);
+    res.send(200);
     next();
   });
 
