@@ -2,7 +2,7 @@
 const restify = require('restify');
 const restifyPlugins = require('restify').plugins;
 const restifyCookies = require('restify-cookies');
-const mongoose = require('mongodb');//require('mongoose');
+const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
 const fs = require('fs');
 const route66 = require('./nodule/route-66');
@@ -53,7 +53,7 @@ server.listen(port, () => {
 
   //connect to mongodb
   mongoose.Promise = global.Promise;
-
+  console.log(mongoURL);
   mongoose.connect(mongoURL, function(err, conn) {
     if (err) {
       callback(err);
