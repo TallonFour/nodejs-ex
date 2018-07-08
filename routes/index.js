@@ -8,7 +8,8 @@ const qs = require('qs');
 module.exports = function(server) {
 
   server.get('/', (req, res, next) => {
-    res.redirect('https://api.samusoidal.com:7002/app/', next);
+    res.send(200);
+    next();
   });
 
 };
