@@ -1,8 +1,66 @@
-//  OpenShift sample Node application
+// Dependencies
+const restify = require('restify');
+const restifyPlugins = require('restify-plugins');
+const restifyCookies = require('restify-cookies');
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+const fs = require('fs');
+const route66 = require('./nodule/route-66');
+
+// Init Server
+const server = restify.createServer({
+  name: 'T4',
+  version: '0.0',
+  handleUncaughtExceptions: true,
+  //key: fs.readFileSync('../ssl/server.key'),
+  //certificate: fs.readFileSync('../ssl/server.crt')
+});
+
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080,
+    ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0',
+    mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL,
+    mongoURLLabel = "";
+
+// Middleware
+server.use(restifyPlugins.jsonBodyParser({ mapParams: true }));
+server.use(restifyPlugins.acceptParser(server.acceptable));
+server.use(restifyPlugins.queryParser({ mapParams: true }));
+server.use(restifyPlugins.fullResponse());
+server.use(restifyPlugins.authorizationParser());
+
+secureserver.use(restifyPlugins.jsonBodyParser({ mapParams: true }));
+secureserver.use(restifyPlugins.acceptParser(server.acceptable));
+secureserver.use(restifyPlugins.queryParser({ mapParams: true }));
+secureserver.use(restifyPlugins.fullResponse());
+secureserver.use(restifyPlugins.authorizationParser());
+
+// Start Server, Connect to DB and Require Routes
+server.listen(port, () => {
+  //connect to mongodb
+  mongoose.Promise = global.Promise;
+  mongoose.connect(mongoURL, { useMongoClient: true });
+  autoIncrement.initialize(mongoose.connection);
+
+  const db = mongoose.connection;
+
+  db.on('error', (err) => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  db.once('open', () => {
+    route66.initializeRoutes(server);
+    console.log('Server is listening on port 7001');
+  });
+
+});
+
+
+/*//  OpenShift sample Node application
 var express = require('express'),
     app     = express(),
     morgan  = require('morgan');
-    
+
 Object.assign=require('object-assign')
 
 app.engine('html', require('ejs').renderFile);
@@ -106,3 +164,5 @@ app.listen(port, ip);
 console.log('Server running on http://%s:%s', ip, port);
 
 module.exports = app ;
+
+*/
