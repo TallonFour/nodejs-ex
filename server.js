@@ -48,6 +48,14 @@ server.use(restifyPlugins.queryParser({ mapParams: true }));
 server.use(restifyPlugins.fullResponse());
 server.use(restifyPlugins.authorizationParser());
 
+server.use(
+  function crossOrigin(req,res,next){
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    return next();
+  }
+);
+
 // Start Server, Connect to DB and Require Routes
 server.listen(port, () => {
 
