@@ -1,6 +1,6 @@
 // Dependencies
 const restify = require('restify');
-const restifyPlugins = require('restify-plugins');
+const restifyPlugins = require('restify').plugins;
 const restifyCookies = require('restify-cookies');
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
