@@ -23,7 +23,8 @@
     "restify-cookies": "^0.2.5",
     "restify-errors": "^6.0.0",
     "restify-oauth2": "^4.0.4",
-    "restify-plugins": "^1.6.0"
+    "restify-plugins": "^1.6.0",
+    "showdown": "^1.8.6"
   },
   "engine": {
     "node": "*",

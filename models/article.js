@@ -1,27 +1,27 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 const mongooseStringQuery = require('mongoose-string-query');
 const timestamps = require('mongoose-timestamp');
 
-const ApplicationSchema = new mongoose.Schema(
+const ArticleSchema = new mongoose.Schema(
   {
-    app_id: {
+    index: {
       type: Number,
       required: true,
-      trim: true,
     },
     name: {
       type: String,
       required: true,
     },
-    version: {
+    mdcontent: {
       type: String,
       required: true,
     },
-    link: {
+    author: {
       type: String,
-      required: true,
+      required: false,
     },
-    description: {
+    authoremail: {
       type: String,
       required: false,
     }
@@ -29,8 +29,14 @@ const ApplicationSchema = new mongoose.Schema(
   { minimize: false }
 );
 
-ApplicationSchema.plugin(timestamps);
-ApplicationSchema.plugin(mongooseStringQuery);
+ArticleSchema.plugin(timestamps);
+ArticleSchema.plugin(mongooseStringQuery);
+UserSchema.plugin(autoIncrement.plugin, {
+  model: 'Article',
+  field: 'index',
+  startAt: 1000,
+  incrementBy: 1
+});
 
-const Application = mongoose.model('Application', ApplicationSchema);
-module.exports = Application;
+const Article = mongoose.model('Article', ArticleSchema);
+module.exports = Article;
