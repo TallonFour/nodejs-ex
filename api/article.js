@@ -77,7 +77,7 @@ module.exports = function(server) {
 
     let data = req.body || {};
 
-    Article.findOneAndUpdate({ index: req.params.index }, { $set: data } function(err, doc) {
+    Article.findOneAndUpdate({ index: req.params.index }, { $set: data }, function(err, doc) {
 
       if(!req.is('application/json')){
         return next(
@@ -85,9 +85,9 @@ module.exports = function(server) {
         );
       }
 
-        console.log("Successful application POST from  " + req.connection.remoteAddress + ".");
-        res.send(201, article);
-        next();
+      console.log("Successful application PUT from  " + req.connection.remoteAddress + ".");
+      res.send(201, doc);
+      next();
 
     });
 
