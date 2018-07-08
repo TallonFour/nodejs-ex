@@ -72,4 +72,25 @@ module.exports = function(server) {
 
   });
 
+  // PUT
+  server.put('/articles/:index', (req, res, next) => {
+
+    let data = req.body || {};
+
+    Article.findOneAndUpdate({ index: req.params.index }, { $set: data } function(err, doc) {
+
+      if(!req.is('application/json')){
+        return next(
+          new errors.InvalidContentError("Expects 'application/json'")
+        );
+      }
+
+        console.log("Successful application POST from  " + req.connection.remoteAddress + ".");
+        res.send(201, article);
+        next();
+
+    });
+
+  });
+
 };
