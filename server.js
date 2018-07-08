@@ -32,7 +32,13 @@ server.use(restifyPlugins.authorizationParser());
 server.listen(port, () => {
   //connect to mongodb
   mongoose.Promise = global.Promise;
-  mongoose.connect('mongodb://0.0.0.0:27017/sampledb', { useMongoClient: true });
+  mongoose.connect(mongoURL, { useMongoClient: true }, function(err, conn) {
+    if (err) {
+      callback(err);
+      return;
+    }
+  }););
+
   autoIncrement.initialize(mongoose.connection);
 
   const db = mongoose.connection;
