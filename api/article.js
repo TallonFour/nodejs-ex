@@ -4,12 +4,20 @@ const restify = require('restify').plugins;
 const mongoose = require('mongoose');
 const randomstring = require('randomstring');
 const qs = require('qs');
-const showdown = require('showdown');
+const Remarkable = require('remarkable');
 
 const Article = require('../models/article.js');
 
-const Converter = new showdown.Converter();
-Converter.setFlavor('github');
+const md = new Remarkable({
+  html: true,
+  xhtmlOut: true,
+  breaks: true,
+  langPrefix: 'en-',
+  linkify: true,
+
+  typographer: true,
+  quotes: `""''`,
+});
 
 module.exports = function(server) {
 
@@ -55,7 +63,7 @@ module.exports = function(server) {
 
         console.log("Successful article GET from  " + req.connection.remoteAddress + ". | Index: " + doc.index);
 
-        htmlcontent = Converter.makeHtml(doc.mdcontent);
+        htmlcontent = md.render(doc.mdcontent);
 
         res.send(200, htmlcontent);
         next();
