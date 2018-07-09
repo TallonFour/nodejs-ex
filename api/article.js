@@ -63,7 +63,7 @@ module.exports = function(server) {
 
         console.log("Successful article GET from  " + req.connection.remoteAddress + ". | Index: " + doc.index);
 
-        htmlcontent = md.render(doc.mdcontent);
+        htmlcontent = md.render(doc.mdcontent.replace("  ", "\n"));
 
         res.send(200, htmlcontent);
         next();
